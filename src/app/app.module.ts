@@ -14,6 +14,8 @@ import { TeamComponent } from './components/pages/team/team.component';
 import { TeamdetailComponent } from './components/pages/teamdetail/teamdetail.component';
 import { FormsModule } from '@angular/forms';
 import {CareersComponent} from "./components/pages/careers/careers.component";
+import {CareerService} from "./components/services/career.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {CareersComponent} from "./components/pages/careers/careers.component";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+      HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
