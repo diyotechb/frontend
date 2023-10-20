@@ -13,6 +13,7 @@ import { ServicesComponent } from './components/pages/services/services.componen
 import { TeamComponent } from './components/pages/team/team.component';
 import { TeamdetailComponent } from './components/pages/teamdetail/teamdetail.component';
 import { FormsModule } from '@angular/forms';
+import {CareersComponent} from "./components/pages/careers/careers.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     ServicesComponent,
     TeamComponent,
-    TeamdetailComponent
+    TeamdetailComponent,
+      CareersComponent
   ],
   imports: [
     BrowserModule,
