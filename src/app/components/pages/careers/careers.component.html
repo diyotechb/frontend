@@ -16,43 +16,27 @@
         </div> <!-- row -->
     </div> <!-- container -->
 </div>
-<!--====== PAGE TITLE PART ENDS ======-->
-<div class="about-experience-area pb-120">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-1" style="color:#002249!important">
-                <div class="all-title"><span class="title-bold">Diyo Technologies LLC</span> has <span class="title-bold">multiple openings</span> for the position of <span class="title-bold">Software Developer I</span> (Ref#SDI927SB)</div>
-                <br>
-                <div>
-                    <h3>Work Location:</h3>
-                    <p>Position may telecommute from anywhere in the U.S</p>
-                </div>
-                <br>
-                <div>
-                    <h3>Job Duties:<br></h3>
 
-                    <p>Under direct supervision, analyze, design, develop, implement, test, maintain, and support software applications or specialized computer programs, and enhancements of existing systems for client projects.</p>
-                    <p> Assist in all phases of software development life-cycle (SDLC). Collaborate with other software
-                        engineers/developers to gather and analyze user and business requirements, document
-                        specifications, and develop software solutions to meet client needs and data.</p>
-                    <p>Analyze user needs and develop solutions for project requirements. Create appropriate software documentation. Support and troubleshoot software as required, including testing / quality assurance, debugging and modifying applications to enhance user friendliness.</p>
-
-                    <p>Demonstrate knowledge in development methodologies, software design patterns, and software
-                    engineering best practices for the application of development domain areas and specific
-                    technologies and tool sets.</p>
-                </div>
-                <br>
-                <div>
-                    <h3>Requirements:</h3>
-                    <p>This position requires a Bachelor's degree or equivalent in Computer Science, Computer Engineering, Information Technology, Information Systems, or a related field. 40hrs/week </p>
-                    <br>
-                </div>
-                <div>
-                    <h3>Application Instructions:<br></h3>
-                    <p>To apply, please MAIL resume to the following address, ensuring to indicate the position reference code <span style="color:#002249!important;">(Ref#SDI927SB)</span> for which you are applying. <br>
-                        <span style="color:#002249!important;">Mail to: Diyo Technologies LLC, Attn: P. Sapkota, HR, 11260 Roger Bacon Drive, Suite 205, Reston, VA 20190 </span></p>
-                </div>
-            </div>
+<div class="container">
+    <div class="card" *ngFor="let career of careers" style="margin-top: 20px; margin-bottom: 20px;">
+        <div>
+            <h3 class="card-title">{{ career.title }}</h3>
         </div>
-    </div>
+        <div class="card-body">
+            <div class="section">
+                <h5>Work Location:</h5>
+                <p>Position may telecommute from anywhere in the U.S</p>
+            </div>
+            <div class="section">
+                <h5>Job Duties:<br></h5>
+                <p class="card-text">{{ career.description }}</p>
+            </div>
+          <div class="section">
+            <h5>Requirements:</h5>
+            <p>{{career.requirements}} </p>
+           
+        </div>
+        <button (click)="onClick()">Click me!</button>
+        </div>
+      </div>
 </div>
