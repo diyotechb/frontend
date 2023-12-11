@@ -23,8 +23,8 @@ export class CareersComponent {
 
   ngOnInit() {
       this.appService.getJSONData().subscribe((jobs: Careers[]) => {
+        console.log(jobs)
         this.careers=jobs;
-        console.log(this.careers)
       })
   }
 

@@ -14,7 +14,15 @@ import { TeamComponent } from './components/pages/team/team.component';
 import { TeamdetailComponent } from './components/pages/teamdetail/teamdetail.component';
 import { FormsModule } from '@angular/forms';
 import { CareersComponent } from './components/pages/careers/careers.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { JobApplicationComponent } from './components/pages/job-application/job-application.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -28,13 +36,21 @@ import {HttpClientModule} from '@angular/common/http'
     ServicesComponent,
     TeamComponent,
     TeamdetailComponent,
-    CareersComponent
+    CareersComponent,
+    JobApplicationComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

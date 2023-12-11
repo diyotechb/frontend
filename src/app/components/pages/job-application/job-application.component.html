@@ -1,0 +1,48 @@
+
+
+<div class="page-title-area">
+    <div class="container" >
+        <div class="row" >
+            <div class="col-lg-12" style="background-image: url(assets/images/contactus-banner.jpg);">
+                <div class="page-title-item text-center" >
+                    <h2 class="title">Application</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a routerLink='/'>Home </a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Application </li>
+                        </ol>
+                    </nav>
+                </div> <!-- page title -->
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+</div>
+
+<!-- job-application/job-application.component.html -->
+<div class="container" style="margin-bottom: 20px; " >
+
+    <form (submit)="submitApplication()">
+        <mat-form-field>
+          <mat-label>Full Name</mat-label>
+          <input matInput [(ngModel)]="fullName" name="fullName" required>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" [(ngModel)]="applicantEmail" name="applicantEmail" required>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Phone Number</mat-label>
+          <input matInput [(ngModel)]="phoneNumber" name="phoneNumber" required>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Resume</mat-label>
+          <input matInput type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" required>
+        </mat-form-field>
+      
+        <button mat-raised-button type="submit">Submit Application</button>
+      </form>
+      
+</div>
