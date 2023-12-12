@@ -11,14 +11,12 @@ export class AppService {
   
   public constructor(private http:HttpClient) {
   }
+
   getJSONData(): Observable<any>{
     return this.http.get('assets/data/jobDetails.json');
   }
 
   applyJob(formData:FormData){
-    console.log("in app service", formData);
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data')
-    return this.http.post(this.url, formData, {headers});
+    return this.http.post(this.url, formData);
   }
 }

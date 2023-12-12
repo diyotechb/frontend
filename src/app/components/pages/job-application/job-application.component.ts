@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppService } from 'src/app/app.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-job-application',
@@ -11,9 +10,13 @@ import { AppService } from 'src/app/app.service';
 })
 export class JobApplicationComponent implements OnInit {
 
-  fullName: string = '';
+  firstName: string = '';
+  middleName: string = '';
+  lastName: string = '';
   applicantEmail: string = '';
   phoneNumber: string = '';
+  selectedFileName: string = '';
+  message: string = '';
   selectedFile: File | null = null;
 
   constructor(private appService:AppService, private snackBar: MatSnackBar) {}
@@ -24,35 +27,41 @@ export class JobApplicationComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+    this.selectedFileName = this.selectedFile?.name || '';
   }
 
+  @ViewChild('applicationForm') applicationForm: NgForm;
 
-    submitApplication() {
-      const formData = new FormData();
-      formData.append('fullName', this.fullName);
-      formData.append('email', this.applicantEmail);
-      formData.append('phoneNumber', this.phoneNumber);
-      if (this.selectedFile) {
-        formData.append('resume', this.selectedFile, this.selectedFile.name);
-      }
-  
-      this.appService.applyJob( formData)
-        .subscribe(
-          (response) => {
-            this.snackBar.open('Application submitted successfully', 'Close', {
-              duration: 3000,
-            });
-            // Add any further handling or redirection logic here
-          },
-          (error) => {
-            this.snackBar.open('Error submitting application', 'Close', {
-              duration: 3000,
-            });
-            console.error('Error submitting application', error);
-            // Handle errors here
-          }
-        );
+  submitApplication() {
+    const formData = new FormData();
+    formData.append('firstName', this.firstName);
+    formData.append('middleName', this.middleName);
+    formData.append('lastName', this.lastName);
+    formData.append('email', this.applicantEmail);
+    formData.append('phoneNumber', this.phoneNumber);
+
+    if (this.selectedFile) {
+      formData.append('resume', this.selectedFile);
     }
+
+    this.appService.applyJob(formData)
+      .subscribe(
+        (response) => {
+          const message = "Application Submitted Successfully"; 
+          this.snackBar.open(message, 'Close', {
+            duration: 3000,
+          });
+          this.applicationForm.resetForm();
+          this.message = message;
+        },
+        (error) => {
+          const message = 'Error Submitting Application';
+          this.snackBar.open(message, 'Close', {
+            duration: 3000,
+          });
+        },
+      );
+  }
   
 
 
