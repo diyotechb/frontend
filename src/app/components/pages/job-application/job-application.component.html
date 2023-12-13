@@ -28,17 +28,18 @@
             <h2 class="title">Get Started With Your Application.</h2>
           </div> <!-- section title -->
           <div class="form-area">
-            <form (submit)="submitApplication()" id="application-form" class="contact-form" #applicationForm="ngForm">
+            <form (submit)="submitApplication()" [formGroup]="applicationForm" id="application-form" class="contact-form">
               <div class="input-box mt-45">
+                <p>* Required Fields</p>
                 <div class="row">
                   <div class="col-lg-4 mrgtb-5">
-                  <input type="text" [(ngModel)]="firstName" name="firstName" placeholder="First Name" required>
+                  <input type="text" formControlName="firstName" name="firstName" placeholder="First Name*" required>
                   </div>
                   <div class="col-lg-4 mrgtb-5">
-                  <input type="text" [(ngModel)]="middleName" name="middleName" placeholder="Middle Name">
+                  <input type="text" formControlName="middleName" name="middleName" placeholder="Middle Name">
                   </div>
                   <div class="col-lg-4 mrgtb-5">
-                  <input type="text" [(ngModel)]="lastName" name="lastName" placeholder="Last Name" required>
+                  <input type="text" formControlName="lastName" name="lastName" placeholder="Last Name*" required>
                   </div>
                 </div>
               </div>
@@ -46,14 +47,16 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="input-box mt-20">
-                    <input type="email" [(ngModel)]="applicantEmail" name="applicantEmail" placeholder="Email" required>
+                    <input type="email" formControlName="applicantEmail" name="applicantEmail" placeholder="Email*" required>
                     <i class="fal fa-envelope"></i>
+                    <div *ngIf="applicationForm.get('applicantEmail').hasError('pattern')" class="text-danger">Invalid email address</div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="input-box mt-20">
-                    <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+                    <input type="text" formControlName="phoneNumber" name="phoneNumber" placeholder="Phone Number*" required>
                     <i class="fal fa-phone"></i>
+                    <div *ngIf="applicationForm.get('phoneNumber').hasError('pattern')" class="text-danger">Invalid phone number</div>
                   </div>
                 </div>
               </div>
@@ -63,7 +66,7 @@
                   <div class="input-box mt-20">
                     <label class="file-input-label">
                       <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" required>
-                      <span>{{ selectedFileName ? selectedFileName : 'Select Resume' }}</span>
+                      <span>{{ selectedFileName ? selectedFileName : 'Select Your Resume*' }}</span>
                     </label>
                     <i class="fal fa-file"></i>
                   </div>
