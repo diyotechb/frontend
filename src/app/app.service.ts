@@ -1,22 +1,23 @@
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  url = 'http://localhost:5000/api/users/applyJob'
+  url = environment.localURL;
   
   public constructor(private http:HttpClient) {
   }
 
-  getJSONData(): Observable<any>{
-    return this.http.get('assets/data/jobDetails.json');
+  getAllJobs(): Observable<any>{
+    return this.http.get(this.url + "jobs/all");
   }
 
   applyJob(formData:FormData){
-    return this.http.post(this.url, formData);
+    return this.http.post(this.url + "users/applyJob", formData);
   }
 }
