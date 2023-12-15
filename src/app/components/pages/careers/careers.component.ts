@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 
 export interface Careers{
@@ -18,14 +19,17 @@ export class CareersComponent {
 
   careers:Careers[];
 
-  public constructor(private appService: AppService) {
+  public constructor(private appService: AppService, private router: Router) {
   }
 
   ngOnInit() {
-      this.appService.getJSONData().subscribe((jobs: Careers[]) => {
-        console.log(jobs)
+      this.appService.getAllJobs().subscribe((jobs: Careers[]) => {
         this.careers=jobs;
       })
+  }
+
+  apply() {
+    this.router.navigate(['/apply']);
   }
 
 }
