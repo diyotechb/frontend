@@ -8,16 +8,16 @@ import { environment } from 'src/environments/environment';
 })
 export class AppService {
 
-  url = environment.localURL;
+  url = environment.prodURL;
   
   public constructor(private http:HttpClient) {
   }
 
   getAllJobs(): Observable<any>{
-    return this.http.get(this.url + "jobs/all");
+    return this.http.get(this.url + "/api/jobs/all");
   }
 
   applyJob(formData:FormData){
-    return this.http.post(this.url + "users/applyJob", formData);
+    return this.http.post(this.url + "/api/users/applyJob", formData);
   }
 }

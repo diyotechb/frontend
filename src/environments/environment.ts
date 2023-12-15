@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  localURL : 'http://localhost:5000/api/'
+  prodURL : 'http://diyotech-demo-env.eba-ujvs9yyh.us-east-1.elasticbeanstalk.com',
+  localURL : 'http://localhost:5000'
 };
 
 /*

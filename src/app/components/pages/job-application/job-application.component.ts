@@ -68,6 +68,7 @@ export class JobApplicationComponent implements OnInit {
           this.selectedFileName = '';
 
           this.message = message;
+          
         },
         (error) => {
           const message = 'Error Submitting Application';
