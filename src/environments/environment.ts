@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  prodURL : 'http://diyotech-demo-env.eba-ujvs9yyh.us-east-1.elasticbeanstalk.com',
+  localURL : 'http://localhost:5000'
 };
 
 /*
