@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AppService {
 
-  url = environment.prodURL;
+  url = environment.url;
   
   public constructor(private http:HttpClient) {
   }
