@@ -18,35 +18,26 @@
 </div>
 <!--====== PAGE TITLE PART ENDS ======-->
 <div class="about-experience-area pb-120">
-    <div class="container" *ngIf = "careers">
-        <div class="row" *ngFor="let career of careers" style="margin: 20px;">
-            <div class="col-lg-8 offset-lg-1" style="color:#002249!important">
-            <div>
-                <h1>{{career.title}}</h1>
-            </div>
-             
-                <div>
-                    <h3>Work Location:</h3>
-                    <p>{{career.location}}</p>
-                </div>
-                <br>
-                <div>
-                    <h3>Job Duties:<br></h3>
-
-                    <p>{{career.description}}</p>
-                </div>
-                <br>
-                <div>
-                    <h3>Requirements:</h3>
-                    <p>{{career.requirements}}</p>
-                    <br>
-                </div>
-                <div>
-                    <h3>Application Instructions:<br></h3>
-                    <p>{{career.instructions}}</p>
-                </div>
-                <button mat-stroked-button (click)="apply()">Apply</button>
-            </div>
-        </div>
+    <div class="container">
+        <div *ngIf="careers && careers.length === 0">
+            <h2>No job listings available at the moment. Check back later!</h2>
+        </div>  
+        <div *ngIf="careers"> 
+            <h2>Explore Available Opportunities.</h2>
+            <mat-card class="example-card" *ngFor="let career of careers" style="margin: 20px;">
+                <mat-card-header>
+                <mat-card-title><h1>{{career.title}}</h1></mat-card-title>
+                <mat-card-subtitle>{{career.location}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                <p>{{career.description}}</p>
+                <h3>Requirements:</h3>
+                <p>{{career.requirements}}</p>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                <button mat-raised-button color="primary" (click)="apply()">Apply Now</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>  
     </div>
 </div>

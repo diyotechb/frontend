@@ -901,7 +901,7 @@ PRELOADER
       .header-area-2.header-area-4 .header-nav .navigation .navbar .navbar-btn {
         top: 5px; } }
     .header-area-2.header-area-4 .header-nav .navigation .navbar .navbar-btn a {
-      line-height: 55px;
+      line-height: 45px;
       padding: 0 35px;
       border-radius: 5px; }
       @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -1305,11 +1305,11 @@ PRELOADER
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../images/banner-gradient-bg-2.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center; }
   .page-title-area .page-title-item {
+    padding-bottom: 50px;
     padding-top: 280px; }
     .page-title-area .page-title-item .title {
       font-size: 80px; }
@@ -1320,6 +1320,7 @@ PRELOADER
         .page-title-area .page-title-item .title {
           font-size: 80px; } }
     .page-title-area .page-title-item nav {
+      margin-top: 10px;
       display: inline-block; }
       .page-title-area .page-title-item nav .breadcrumb {
         padding: 0;
@@ -6134,6 +6135,7 @@ nav .pagination.pagination-2 li a {
   position: relative;
   z-index: 5; }
   .who-we-are-area .section-title .title {
+    line-height: normal;
     font-size: 55px;
     color: #232323;
     margin-bottom: 38px; }
@@ -7071,6 +7073,7 @@ nav .pagination.pagination-2 li a {
   .our-choose-area .section-title span {
     letter-spacing: 3px; }
   .our-choose-area .section-title .title {
+    line-height: normal;
     font-size: 55px;
     margin-bottom: 46px; }
     @media (max-width: 767px) {
