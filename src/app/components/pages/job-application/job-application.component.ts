@@ -48,6 +48,7 @@ export class JobApplicationComponent implements OnInit {
           });
       return;
     }
+    
     const formData = new FormData();
     formData.append('firstName', this.applicationForm.value.firstName);
     formData.append('middleName', this.applicationForm.value.middleName);
@@ -60,15 +61,10 @@ export class JobApplicationComponent implements OnInit {
       .subscribe(
         (response) => {
           const message = "Application Submitted Successfully"; 
-          this.snackBar.open(message, 'Close', {
-            duration: 3000,
-          });
           this.applicationForm.reset();
           this.selectedFile = null;
           this.selectedFileName = '';
-
-          this.message = message;
-          
+          this.message = message;      
         },
         (error) => {
           const message = 'Error Submitting Application';
@@ -78,7 +74,4 @@ export class JobApplicationComponent implements OnInit {
         },
       );
   }
-  
-
-
 }
