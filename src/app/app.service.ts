@@ -14,10 +14,10 @@ export class AppService {
   }
 
   getAllJobs(): Observable<any>{
-    return this.http.get(this.url + "/api/jobs/all");
+    return this.http.get(this.url + "/api/jobPosting/all");
   }
 
   applyJob(formData:FormData){
-    return this.http.post(this.url + "/api/users/applyJob", formData);
+    return this.http.post(this.url + "/api/jobApplication/applyJob", formData);
   }
 }
