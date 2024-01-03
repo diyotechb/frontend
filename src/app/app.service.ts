@@ -20,4 +20,8 @@ export class AppService {
   applyJob(formData:FormData){
     return this.http.post(this.url + "/api/jobApplication/applyJob", formData);
   }
+
+  enroll(applicationData: any) {
+    return this.http.post(this.url + "/api/enrollment/save", applicationData);
+  }
 }

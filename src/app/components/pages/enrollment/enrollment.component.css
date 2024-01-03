@@ -1,0 +1,59 @@
+
+.file-input-label {
+    line-height: 50px;
+    width: 100%;
+    cursor: pointer;
+    padding: 8px 30px;
+    border: 1px dotted #007bff;
+    border-radius: 4px;
+    color: #6b93aa;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .file-input-label:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .file-input-label input {
+    display: none;
+  }
+  
+  .selected-file {
+    margin-left: 8px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .main-btn:hover{
+    cursor: pointer;
+    background-color: #0c59db;
+  }
+
+ .form-message{
+    margin: 10px 0;
+    background: #28a7457a;
+    color: #212121;
+    text-align: center;
+    padding: 5px 0;
+ }
+
+ .mrgtb-5{
+    margin: 5px 0;
+ }
+
+ .mrgrl-5{
+  margin: 0 5px;
+}
+
+ .align-right{
+  text-align: right;
+ }
+
+ .display-inflex{
+  display: inline-flex;
+ }
+
+ .select-width{
+  width: 150px;
+ }

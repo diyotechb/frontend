@@ -1,0 +1,159 @@
+<div class="page-title-area">
+  <div class="container" >
+      <div class="row" style="background-image: url(assets/images/background1.jpg);">
+          <div class="col-lg-12" style="background-image: url(assets/images/contactus-banner.jpg);">
+              <div class="page-title-item text-center" >
+                  <h2 class="title">Enrollment</h2>
+                  <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a routerLink='/'>Home </a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Enrollment </li>
+                      </ol>
+                  </nav>
+              </div> <!-- page title -->
+          </div>
+      </div> <!-- row -->
+  </div> <!-- container -->
+</div>
+<div class="get-in-touch-area get-in-touch-area-2">
+  <div class="container">
+      <div class="row">
+        <div class="">
+          <div class="section-title text-left">
+            <span>Enrollment</span>
+            <h2 class="title">Get Started With Your Enrollment.</h2>
+          </div> <!-- section title -->
+          <div class="form-area">
+            <form (submit)="submitEnrollment()" [formGroup]="enrollmentForm" id="enrollment-form" class="contact-form">
+              <div class="input-box mt-45">
+                <p>* Required Fields</p>
+                <div class="row">
+                  <div class="col-lg-6 mrgtb-5">
+                    <input type="text" formControlName="fullName" placeholder="Full Name*" required>
+                    <i class="fal fa-user"></i>
+                  </div>
+                  <div class="col-lg-6 mrgtb-5">
+                    <input type="text" formControlName="dateOfBirth" placeholder="Date of Birth (MM/DD/YYYY)*" required>
+                    <div *ngIf="enrollmentForm.get('dateOfBirth').hasError('pattern')" class="text-danger">Invalid date of birth, use MM/DD/YYYY format.</div>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <input type="email" formControlName="emailAddress" placeholder="Email*" required>
+                    <i class="fal fa-envelope"></i>
+                    <div *ngIf="enrollmentForm.get('emailAddress').hasError('pattern')" class="text-danger">Invalid email address</div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <input type="text" formControlName="phoneNumber" placeholder="Phone Number*" required>
+                    <i class="fal fa-phone"></i>
+                    <div *ngIf="enrollmentForm.get('phoneNumber').hasError('pattern')" class="text-danger">Invalid phone number</div>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <i class="fal fa-address-card"></i>
+                    <input type="text" formControlName="currentAddress" placeholder="Address*" required>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <input type="text" formControlName="visaStatus" placeholder="Visa Status*" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="input-box mt-20 display-inflex">
+                    <div>Do you Have a Driver License?</div>
+                    <div class="mrgrl-5"><input type="checkbox" formControlName="hasDriverLicense" (change)="onDriverLicenseCheckboxChange($event)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <input type="text" formControlName="education" placeholder="Highest Education Level*" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <input type="text" formControlName="degree" placeholder="Degree In*" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <input type="text" formControlName="institution" placeholder="Institution Name*" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <input type="text" formControlName="completionDate" placeholder="Completion Date*">
+                    <div *ngIf="enrollmentForm.get('completionDate').hasError('pattern')" class="text-danger">Invalid completion date, use MM/DD/YYYY format.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <input type="text" formControlName="referral" placeholder="Referral">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <div>Training Preferences*</div>
+                    <div>
+                    <select className="select-width" formControlName="trainingPreference" placeholder="Training Preference">
+                      <option value="JAVA">Java</option>
+                      <option value="QA">QA</option>
+                      <option value="DEVOPS">Dev Ops</option>
+                      <option value="SALESFORCE">Sales Force</option>
+                      <option value="NONE">None</option>
+                    </select>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mrgtb-5"><h2>Documents</h2></div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-box mt-20">
+                    <label class="file-input-label">
+                      <input type="file" (change)="onFileSelected($event, 'resume')" accept=".pdf,.doc,.docx" required>
+                      <span>{{ resumeFileName ? resumeFileName : 'Select Your Resume*' }}</span>
+                    </label>
+                    <i class="fal fa-file"></i>
+                  </div>
+                </div>  
+                <div class="col-lg-6" *ngIf="enrollmentForm.get('hasDriverLicense').value">
+                  <div class="input-box mt-20">
+                    <label class="file-input-label">
+                      <input type="file" (change)="onFileSelected($event, 'license')" accept=".pdf,.doc,.docx" required>
+                      <span>{{ licenseFileName ? licenseFileName : 'Select Your Driving License*' }}</span>
+                    </label>
+                    <i class="fal fa-file"></i>
+                  </div>
+                </div>               
+              </div>
+          
+              <div class="mt-20 submit-btn-wrapper" style="display: flex; justify-content: center;">
+                <button type="submit" class="main-btn">Enroll Now</button>
+              </div>
+            </form>
+            <p *ngIf="message" class="form-message">{{ message }}</p>
+            <div *ngIf="message" class="align-right"><a routerLink="/careers">View our openings</a></div>
+          </div>          
+        </div>
+      </div>
+  </div>
+</div>
