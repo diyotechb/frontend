@@ -54,6 +54,6 @@
   display: inline-flex;
  }
 
- .select-width{
-  width: 150px;
- }
+ .full-width {
+  width: 100%;
+}

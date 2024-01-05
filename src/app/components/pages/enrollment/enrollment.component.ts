@@ -20,18 +20,18 @@ export class EnrollmentComponent implements OnInit{
   constructor(private appService:AppService, private snackBar: MatSnackBar, private fb: FormBuilder) {
     this.enrollmentForm = this.fb.group({
       fullName: ['', Validators.required],
-      dateOfBirth: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)]],
+      dateOfBirth: ['', Validators.required],
       emailAddress: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9- ]+$')]],
       currentAddress: ['', Validators.required],
-      hasDriverLicense: [false],
-      visaStatus: ['', Validators.required],
+      hasDriverLicense: ['', Validators.required],
+      workStatus: ['', Validators.required],
       education: ['', Validators.required],
       degree: ['', Validators.required],
       institution: ['', Validators.required],
-      completionDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)]],
+      completionDate: ['', Validators.required],
       referral: [''],
-      trainingPreference: [''],
+      trainingPreference: ['', Validators.required],
     });
   }
 
@@ -57,16 +57,14 @@ export class EnrollmentComponent implements OnInit{
   }
 
   onDriverLicenseCheckboxChange(event: any) {
-    const isChecked = event.target.checked;
-
-    if (!isChecked) {
-        this.licenseDoc = '';
+    if (event.value === 'NO') {
+      this.licenseFileName ='';
+      this.licenseDoc = '';
     }
-}
+  }
 
   submitEnrollment(){
-
-    if (this.enrollmentForm.invalid) {
+    if (this.enrollmentForm.invalid || !this.resumeDoc || (this.enrollmentForm.value.hasDriverLicense ==='YES' && !this.licenseDoc)) {
       const message = 'Fill all the required fields';
       this.snackBar.open(message, 'Close', {
         duration: 3000,
@@ -81,24 +79,22 @@ export class EnrollmentComponent implements OnInit{
       phoneNumber: this.enrollmentForm.value.phoneNumber,
       currentAddress: this.enrollmentForm.value.currentAddress,
       hasDriverLicense: this.enrollmentForm.value.hasDriverLicense,
-      visaStatus: this.enrollmentForm.value.visaStatus,
+      workStatus: this.enrollmentForm.value.workStatus,
       education: this.enrollmentForm.value.education,
       degree: this.enrollmentForm.value.degree,
       institution: this.enrollmentForm.value.institution, 
       completionDate: this.enrollmentForm.value.completionDate,
       referral: this.enrollmentForm.value.referral,
-      trainingPreference: "JAVA",
+      trainingPreference: this.enrollmentForm.value.trainingPreference,
       applicationStatus: "APPLICATION_STARTED",
       resumeDoc:this.resumeDoc,
       licenseDoc:this.licenseDoc
     };
-
     this.appService.enroll(enrollmentsData)
     .subscribe(
       (response) => {
         const message = 'Thank you for your enrollment. You will be contacted soon.';
         this.enrollmentForm.reset();
-
         this.resumeDoc = null;
         this.licenseDoc = null;
         this.resumeFileName ='';

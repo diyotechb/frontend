@@ -24,6 +24,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { EnrollmentComponent } from './components/pages/enrollment/enrollment.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatIconModule} from '@angular/material/icon';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 
@@ -56,7 +62,12 @@ import { EnrollmentComponent } from './components/pages/enrollment/enrollment.co
     ReactiveFormsModule,
     MatSnackBarModule,
     MatCardModule, 
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

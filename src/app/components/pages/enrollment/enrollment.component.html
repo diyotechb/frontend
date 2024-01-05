@@ -24,17 +24,25 @@
             <h2 class="title">Get Started With Your Enrollment.</h2>
           </div> <!-- section title -->
           <div class="form-area">
-            <form (submit)="submitEnrollment()" [formGroup]="enrollmentForm" id="enrollment-form" class="contact-form">
-              <div class="input-box mt-45">
+            <form (ngSubmit)="submitEnrollment()" [formGroup]="enrollmentForm" id="enrollment-form" class="contact-form">
+              <div class="mt-45">
                 <p>* Required Fields</p>
                 <div class="row">
-                  <div class="col-lg-6 mrgtb-5">
-                    <input type="text" formControlName="fullName" placeholder="Full Name*" required>
-                    <i class="fal fa-user"></i>
+                  <div class="col-lg-6">
+                    <div class="input-box mt-20">
+                      <input type="text" formControlName="fullName" placeholder="Full Name*" required>
+                      <i class="fal fa-user"></i>
+                    </div>
                   </div>
-                  <div class="col-lg-6 mrgtb-5">
-                    <input type="text" formControlName="dateOfBirth" placeholder="Date of Birth (MM/DD/YYYY)*" required>
-                    <div *ngIf="enrollmentForm.get('dateOfBirth').hasError('pattern')" class="text-danger">Invalid date of birth, use MM/DD/YYYY format.</div>
+                  <div class="col-lg-6">
+                    <div class="mt-20">
+                      <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Date of Birth*</mat-label>
+                        <input matInput [matDatepicker]="dobPicker" formControlName="dateOfBirth">
+                        <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #dobPicker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -68,20 +76,44 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="input-box mt-20">
-                    <input type="text" formControlName="visaStatus" placeholder="Visa Status*" required>
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>Visa Status*</mat-label>
+                      <mat-select class ="mat-select-wrapper" formControlName="workStatus">
+                        <mat-option value="" disabled>Select your Work Status</mat-option>
+                        <mat-option value="USCITIZEN">US Citizen</mat-option>
+                        <mat-option value="GREENCARD">Green Card</mat-option>
+                        <mat-option value="EAD_GREENCARD">EAD (Green Card)</mat-option>
+                        <mat-option value="WORKPERMIT">Work Permit</mat-option>
+                        <mat-option value="EAD_OPT">EAD (OPT Student)</mat-option>
+                        <mat-option value="EAD_CPT">EAD (CPT Student)</mat-option>
+                      </mat-select>
+                    </mat-form-field>
                   </div>
                 </div>
                 <div class="col-lg-6">
-                  <div class="input-box mt-20 display-inflex">
-                    <div>Do you Have a Driver License?</div>
-                    <div class="mrgrl-5"><input type="checkbox" formControlName="hasDriverLicense" (change)="onDriverLicenseCheckboxChange($event)"></div>
+                  <div class="input-box mt-20">
+                    <div>Do you Have a Driver License?*</div>
+                      <mat-radio-group formControlName="hasDriverLicense" (change)="onDriverLicenseCheckboxChange($event)" color="primary">
+                        <mat-radio-button value="YES">Yes</mat-radio-button>
+                        <mat-radio-button value="NO">No</mat-radio-button>
+                      </mat-radio-group>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="input-box mt-20">
-                    <input type="text" formControlName="education" placeholder="Highest Education Level*" required>
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>Highest Education Level*</mat-label>
+                      <mat-select class ="mat-select-wrapper" formControlName="education">
+                        <mat-option value="" disabled>Select your Highest Education</mat-option>
+                        <mat-option value="HIGHSCHOOL_GED">High School/GED</mat-option>
+                        <mat-option value="ASSOCIATES">Associates</mat-option>
+                        <mat-option value="BACHELORS">Bachelors</mat-option>
+                        <mat-option value="MASTERS">Masters</mat-option>
+                        <mat-option value="PHD">PHD</mat-option>
+                      </mat-select>
+                    </mat-form-field>
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -97,9 +129,13 @@
                   </div>
                 </div>
                 <div class="col-lg-6">
-                  <div class="input-box mt-20">
-                    <input type="text" formControlName="completionDate" placeholder="Completion Date*">
-                    <div *ngIf="enrollmentForm.get('completionDate').hasError('pattern')" class="text-danger">Invalid completion date, use MM/DD/YYYY format.</div>
+                  <div class="mt-20">
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>Completion Date*</mat-label>
+                      <input matInput [matDatepicker]="completionPicker" formControlName="completionDate">
+                      <mat-datepicker-toggle matIconSuffix [for]="completionPicker"></mat-datepicker-toggle>
+                      <mat-datepicker #completionPicker></mat-datepicker>
+                    </mat-form-field>
                   </div>
                 </div>
               </div>
@@ -111,16 +147,17 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="input-box mt-20">
-                    <div>Training Preferences*</div>
-                    <div>
-                    <select className="select-width" formControlName="trainingPreference" placeholder="Training Preference">
-                      <option value="JAVA">Java</option>
-                      <option value="QA">QA</option>
-                      <option value="DEVOPS">Dev Ops</option>
-                      <option value="SALESFORCE">Sales Force</option>
-                      <option value="NONE">None</option>
-                    </select>
-                  </div>
+                    <mat-form-field class="full-width" appearance="outline">
+                      <mat-label>Training Preferences*</mat-label>
+                      <mat-select class ="mat-select-wrapper" formControlName="trainingPreference">
+                        <mat-option value="" disabled>Select a training preference</mat-option>
+                        <mat-option value="JAVA">Java</mat-option>
+                        <mat-option value="QA">QA</mat-option>
+                        <mat-option value="DEVOPS">Dev Ops</mat-option>
+                        <mat-option value="SALESFORCE">Sales Force</mat-option>
+                        <mat-option value="NONE">None</mat-option>
+                      </mat-select>
+                    </mat-form-field>
                   </div>
                 </div>
               </div>
@@ -135,7 +172,7 @@
                     <i class="fal fa-file"></i>
                   </div>
                 </div>  
-                <div class="col-lg-6" *ngIf="enrollmentForm.get('hasDriverLicense').value">
+                <div class="col-lg-6" *ngIf="enrollmentForm.get('hasDriverLicense').value === 'YES'">
                   <div class="input-box mt-20">
                     <label class="file-input-label">
                       <input type="file" (change)="onFileSelected($event, 'license')" accept=".pdf,.doc,.docx" required>
