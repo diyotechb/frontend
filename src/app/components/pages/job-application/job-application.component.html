@@ -73,7 +73,7 @@
                 </div>               
               </div>
               <div class="mt-20 submit-btn-wrapper" style="display: flex; justify-content: center;">
-                <button type="submit" class="main-btn">Submit Application</button> 
+                <button type="submit" class="main-btn" [disabled]="isSubmitting">{{ isSubmitting ? 'Submitting...' :'Submit Application'}}</button>
               </div>
             </form>
             <p *ngIf="message" class="form-message">{{message}}</p>

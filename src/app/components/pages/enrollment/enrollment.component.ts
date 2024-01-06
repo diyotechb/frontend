@@ -16,6 +16,7 @@ export class EnrollmentComponent implements OnInit{
   licenseFileName: string = '';
   licenseDoc: String | null = null;
   enrollmentForm: FormGroup;
+  isSubmitting: boolean = false;
 
   trainingPreferences = [
     { value: '', label: 'Select a training preference', disabled: true },
@@ -119,6 +120,7 @@ export class EnrollmentComponent implements OnInit{
       licenseDoc:this.licenseDoc
     };
 
+    this.isSubmitting = true;
     this.appService.enroll(enrollmentsData)
     .subscribe(
       (response) => {
@@ -128,6 +130,7 @@ export class EnrollmentComponent implements OnInit{
         this.licenseDoc = null;
         this.resumeFileName ='';
         this.licenseFileName ='';
+        this.isSubmitting = false;
         this.message = message;
       },
       (error) => {
@@ -135,6 +138,7 @@ export class EnrollmentComponent implements OnInit{
         this.snackBar.open(message, 'Close', {
           duration: 3000,
         });
+        this.isSubmitting = false;
       },
     );
 

@@ -12,8 +12,9 @@ export class JobApplicationComponent implements OnInit {
 
   message: string = '';
   resumeFile: String | null = null;
-  resumeFileName:  string = ''
+  resumeFileName:  string = '';
   applicationForm: FormGroup;
+  isSubmitting: boolean = false;
 
   constructor(private appService:AppService, private snackBar: MatSnackBar, private fb: FormBuilder) {
     this.applicationForm = this.fb.group({
@@ -58,6 +59,7 @@ export class JobApplicationComponent implements OnInit {
       resumeUrl:this.resumeFile
     }
 
+    this.isSubmitting = true;
     this.appService.applyJob(formData)
       .subscribe(
         (response) => {
@@ -65,6 +67,7 @@ export class JobApplicationComponent implements OnInit {
           this.applicationForm.reset();
           this.resumeFile = null;
           this.resumeFileName = '';
+          this.isSubmitting = false;
           this.message = message;      
         },
         (error) => {
@@ -72,6 +75,7 @@ export class JobApplicationComponent implements OnInit {
           this.snackBar.open(message, 'Close', {
             duration: 3000,
           });
+          this.isSubmitting = false;
         },
       );
   }
