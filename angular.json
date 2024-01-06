@@ -146,8 +146,5 @@
         }
       }
     }},
-  "defaultProject": "Diyotech",
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "Diyotech"
 }
