@@ -17,6 +17,34 @@ export class EnrollmentComponent implements OnInit{
   licenseDoc: String | null = null;
   enrollmentForm: FormGroup;
 
+  trainingPreferences = [
+    { value: '', label: 'Select a training preference', disabled: true },
+    { value: 'JAVA', label: 'Java' },
+    { value: 'QA', label: 'QA' },
+    { value: 'DEVOPS', label: 'Dev Ops' },
+    { value: 'SALESFORCE', label: 'Sales Force' },
+    { value: 'NONE', label: 'None' }
+  ];
+
+  educationOptions = [
+    { value: '', label: 'Select your Highest Education', disabled: true },
+    { value: 'HIGHSCHOOL_GED', label: 'High School/GED' },
+    { value: 'ASSOCIATES', label: 'Associates' },
+    { value: 'BACHELORS', label: 'Bachelors' },
+    { value: 'MASTERS', label: 'Masters' },
+    { value: 'PHD', label: 'PHD' }
+  ];
+
+  workStatusOptions = [
+    { value: '', label: 'Select your Work Status', disabled: true },
+    { value: 'USCITIZEN', label: 'US Citizen' },
+    { value: 'GREENCARD', label: 'Green Card' },
+    { value: 'EAD_GREENCARD', label: 'EAD (Green Card)' },
+    { value: 'WORKPERMIT', label: 'Work Permit' },
+    { value: 'EAD_OPT', label: 'EAD (OPT Student)' },
+    { value: 'EAD_CPT', label: 'EAD (CPT Student)' }
+  ];
+
   constructor(private appService:AppService, private snackBar: MatSnackBar, private fb: FormBuilder) {
     this.enrollmentForm = this.fb.group({
       fullName: ['', Validators.required],
@@ -90,6 +118,7 @@ export class EnrollmentComponent implements OnInit{
       resumeDoc:this.resumeDoc,
       licenseDoc:this.licenseDoc
     };
+
     this.appService.enroll(enrollmentsData)
     .subscribe(
       (response) => {

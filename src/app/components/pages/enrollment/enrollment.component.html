@@ -78,14 +78,10 @@
                   <div class="input-box mt-20">
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>Visa Status*</mat-label>
-                      <mat-select class ="mat-select-wrapper" formControlName="workStatus">
-                        <mat-option value="" disabled>Select your Work Status</mat-option>
-                        <mat-option value="USCITIZEN">US Citizen</mat-option>
-                        <mat-option value="GREENCARD">Green Card</mat-option>
-                        <mat-option value="EAD_GREENCARD">EAD (Green Card)</mat-option>
-                        <mat-option value="WORKPERMIT">Work Permit</mat-option>
-                        <mat-option value="EAD_OPT">EAD (OPT Student)</mat-option>
-                        <mat-option value="EAD_CPT">EAD (CPT Student)</mat-option>
+                      <mat-select class="mat-select-wrapper" formControlName="workStatus">
+                        <mat-option *ngFor="let option of workStatusOptions" [value]="option.value" [disabled]="option.disabled">
+                          {{ option.label }}
+                        </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
@@ -105,13 +101,10 @@
                   <div class="input-box mt-20">
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>Highest Education Level*</mat-label>
-                      <mat-select class ="mat-select-wrapper" formControlName="education">
-                        <mat-option value="" disabled>Select your Highest Education</mat-option>
-                        <mat-option value="HIGHSCHOOL_GED">High School/GED</mat-option>
-                        <mat-option value="ASSOCIATES">Associates</mat-option>
-                        <mat-option value="BACHELORS">Bachelors</mat-option>
-                        <mat-option value="MASTERS">Masters</mat-option>
-                        <mat-option value="PHD">PHD</mat-option>
+                      <mat-select class="mat-select-wrapper" formControlName="education">
+                        <mat-option *ngFor="let option of educationOptions" [value]="option.value" [disabled]="option.disabled">
+                          {{ option.label }}
+                        </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
@@ -149,13 +142,10 @@
                   <div class="input-box mt-20">
                     <mat-form-field class="full-width" appearance="outline">
                       <mat-label>Training Preferences*</mat-label>
-                      <mat-select class ="mat-select-wrapper" formControlName="trainingPreference">
-                        <mat-option value="" disabled>Select a training preference</mat-option>
-                        <mat-option value="JAVA">Java</mat-option>
-                        <mat-option value="QA">QA</mat-option>
-                        <mat-option value="DEVOPS">Dev Ops</mat-option>
-                        <mat-option value="SALESFORCE">Sales Force</mat-option>
-                        <mat-option value="NONE">None</mat-option>
+                      <mat-select class="mat-select-wrapper" formControlName="trainingPreference">
+                        <mat-option *ngFor="let option of trainingPreferences" [value]="option.value" [disabled]="option.disabled">
+                          {{ option.label }}
+                        </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>

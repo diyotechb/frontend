@@ -17,7 +17,7 @@ export class AppService {
     return this.http.get(this.url + "/api/jobPosting/all");
   }
 
-  applyJob(formData:FormData){
+  applyJob(formData:any){
     return this.http.post(this.url + "/api/jobApplication/applyJob", formData);
   }
 
