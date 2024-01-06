@@ -11,9 +11,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class JobApplicationComponent implements OnInit {
 
   message: string = '';
-  selectedFileName: string = '';
-  selectedFile: File | null = null;
+  resumeFile: String | null = null;
+  resumeFileName:  string = '';
   applicationForm: FormGroup;
+  isSubmitting: boolean = false;
 
   constructor(private appService:AppService, private snackBar: MatSnackBar, private fb: FormBuilder) {
     this.applicationForm = this.fb.group({
@@ -28,12 +29,20 @@ export class JobApplicationComponent implements OnInit {
   ngOnInit(): void {}
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-    this.selectedFileName = this.selectedFile?.name || '';
+    const selectedFile = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        const base64Data = e.target.result as string;
+        this.resumeFile = base64Data;
+        this.resumeFileName = selectedFile?.name || '';
+    };
+
+    reader.readAsDataURL(selectedFile);
   }
 
   submitApplication() {
-    if(this.applicationForm.invalid){
+    if(this.applicationForm.invalid || !this.resumeFile ){
       const message = 'Fill all the required fields';
           this.snackBar.open(message, 'Close', {
             duration: 3000,
@@ -41,29 +50,24 @@ export class JobApplicationComponent implements OnInit {
       return;
     }
 
-    if(!this.selectedFile){
-      const message = 'Resume is required';
-          this.snackBar.open(message, 'Close', {
-            duration: 3000,
-          });
-      return;
+    const formData ={
+      firstName:this.applicationForm.value.firstName,
+      middleName:this.applicationForm.value.middleName,
+      lastName:this.applicationForm.value.lastName,
+      email: this.applicationForm.value.applicantEmail,
+      phoneNumber:this.applicationForm.value.phoneNumber,
+      resumeUrl:this.resumeFile
     }
-    
-    const formData = new FormData();
-    formData.append('firstName', this.applicationForm.value.firstName);
-    formData.append('middleName', this.applicationForm.value.middleName);
-    formData.append('lastName', this.applicationForm.value.lastName);
-    formData.append('email', this.applicationForm.value.applicantEmail);
-    formData.append('phoneNumber', this.applicationForm.value.phoneNumber);
-    formData.append('resume', this.selectedFile);
 
+    this.isSubmitting = true;
     this.appService.applyJob(formData)
       .subscribe(
         (response) => {
           const message = "Application Submitted Successfully"; 
           this.applicationForm.reset();
-          this.selectedFile = null;
-          this.selectedFileName = '';
+          this.resumeFile = null;
+          this.resumeFileName = '';
+          this.isSubmitting = false;
           this.message = message;      
         },
         (error) => {
@@ -71,6 +75,7 @@ export class JobApplicationComponent implements OnInit {
           this.snackBar.open(message, 'Close', {
             duration: 3000,
           });
+          this.isSubmitting = false;
         },
       );
   }

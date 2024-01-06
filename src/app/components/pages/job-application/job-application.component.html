@@ -66,14 +66,14 @@
                   <div class="input-box mt-20">
                     <label class="file-input-label">
                       <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" required>
-                      <span>{{ selectedFileName ? selectedFileName : 'Select Your Resume*' }}</span>
+                      <span>{{ resumeFileName ? resumeFileName : 'Select Your Resume*' }}</span>
                     </label>
                     <i class="fal fa-file"></i>
                   </div>
                 </div>               
               </div>
               <div class="mt-20 submit-btn-wrapper" style="display: flex; justify-content: center;">
-                <button type="submit" class="main-btn">Submit Application</button> 
+                <button type="submit" class="main-btn" [disabled]="isSubmitting">{{ isSubmitting ? 'Submitting...' :'Submit Application'}}</button>
               </div>
             </form>
             <p *ngIf="message" class="form-message">{{message}}</p>
